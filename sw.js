@@ -1,5 +1,5 @@
 /* 아침 7시 홈트 달력 — service worker (앱 셸 캐시 + data.json 네트워크 우선) */
-var CACHE = 'homet-calendar-v1';
+var CACHE = 'homet-calendar-v2';
 var ASSETS = [
   './',
   './index.html',
@@ -44,15 +44,16 @@ self.addEventListener('fetch', function (e) {
     return;
   }
 
+  // 앱 셸은 네트워크 우선(업데이트가 바로 반영), 오프라인이면 캐시
   e.respondWith(
-    caches.match(req).then(function (hit) {
-      return hit || fetch(req).then(function (res) {
-        if (res && res.status === 200 && url.origin === location.origin) {
-          var copy = res.clone();
-          caches.open(CACHE).then(function (c) { c.put(req, copy); });
-        }
-        return res;
-      }).catch(function () { return caches.match('./index.html'); });
+    fetch(req).then(function (res) {
+      if (res && res.status === 200 && url.origin === location.origin) {
+        var copy = res.clone();
+        caches.open(CACHE).then(function (c) { c.put(req, copy); });
+      }
+      return res;
+    }).catch(function () {
+      return caches.match(req).then(function (hit) { return hit || caches.match('./index.html'); });
     })
   );
 });
