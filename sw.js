@@ -1,5 +1,5 @@
 /* 아침 7시 홈트 달력 — service worker (앱 셸 캐시 + data.json 네트워크 우선) */
-var CACHE = 'homet-calendar-v5';
+var CACHE = 'homet-calendar-v6';
 var ASSETS = [
   './',
   './index.html',

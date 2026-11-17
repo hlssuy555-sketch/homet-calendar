@@ -364,7 +364,9 @@
     var goal = plan.menu ? plan.menu.goal : (plan.planKey === 'rest' ? '회복하는 날' : '');
     var subParts = [];
     [(plan.menu ? plan.menu.title : plan.planLabel), goal, dur].forEach(function (part) {
-      if (part && subParts.indexOf(part) === -1) subParts.push(part);
+      if (!part) return;
+      var dup = subParts.some(function (p) { return p.indexOf(part) > -1 || part.indexOf(p) > -1; });
+      if (!dup) subParts.push(part);
     });
     var subText = subParts.join(' · ') +
       (isBeforeStart(k) ? ' · ' + DATA.start_date + ' 시작 전' : '');
