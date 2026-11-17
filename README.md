@@ -1,11 +1,11 @@
 # 아침 7시 홈트 달력
 
-홍성민 님의 아침 7시 홈트 루틴을 보는 모바일 웹앱입니다. 갤럭시(삼성 인터넷·크롬)에서
+아침 7시 홈트 루틴을 보는 모바일 웹앱입니다. 갤럭시(삼성 인터넷·크롬)에서
 **홈 화면에 추가**하면 일반 앱처럼 아이콘으로 열립니다.
 
 - 배포: GitHub Pages (정적 파일만 사용, 빌드 필요 없음)
 - 화면: 월간 달력(월~일) + 날짜를 누르면 그날 기구별 운동·세트 체크
-- 기록: 이 기기의 `localStorage`에 저장되고, 서버(`data.json`) 기록과 병합되어 표시됩니다
+- 기록: 이 기기의 `localStorage`에만 저장됩니다 (공개 저장소에는 개인 기록을 올리지 않습니다)
 
 ## 파일 구성
 
@@ -14,7 +14,7 @@
 | `index.html` | 화면 뼈대 |
 | `style.css` | 모바일(360~412px) 우선 스타일, 다크 모드 없음 |
 | `app.js` | 달력·통계·상세 패널·저장 로직 |
-| `data.json` | 루틴·주간 계획·운동 메뉴·기록 (앱이 `fetch`로 읽음) |
+| `data.json` | 루틴·주간 계획·운동 메뉴 틀 (개인 기록 제외, 앱이 `fetch`로 읽음) |
 | `fallback.js` | `data.json`의 내장 사본 (파일로 직접 열 때 사용) |
 | `manifest.json` | PWA 매니페스트 (standalone, 아이콘) |
 | `sw.js` | 오프라인 캐시 (앱 셸) |
@@ -45,24 +45,25 @@
 
 `id`는 기록(`sets`)의 키로 쓰이므로 **이미 쓴 id는 바꾸지 마세요.**
 
-## 기록 동기화
+## 루틴 동기화
 
-`workouts/log.json`이 바뀌면(예: 매일 아침 체크 기록):
+`workouts/log.json`에서 루틴·메뉴 틀을 가져와 이 저장소의 `data.json`·`fallback.js`를 갱신할 때:
 
 ```bash
 cd workouts/webapp
 python3 tools/sync_data.py            # workouts/log.json 자동 탐색 → data.json + fallback.js 갱신
-git add -A && git commit -m "기록 동기화" && git push
+git add data.json fallback.js && git commit -m "루틴 동기화" && git push
 ```
 
-`sync_data.py`는 `start_date`·`routine_name`·`equipment`·`weekly_plan`·`records`·`bodyweight_only_until`만
-옮기고 `menus`·`menu_labels`는 그대로 둡니다.
+`sync_data.py`는 `start_date`·`routine_name`·`equipment`·`weekly_plan`·`bodyweight_only_until`만
+옮기고 `menus`·`menu_labels`는 그대로 둡니다. 개인 기록(`records`)은 옮기지 않고
+항상 `{}`로 비워 두므로, 공개 커밋에 운동 기록이 섞이지 않습니다.
 
 ## 기록이 저장되는 곳
 
-- 앱에서 직접 누른 체크 → 브라우저 `localStorage` 키 `homet.calendar.v1`
-- `data.json`의 `records` → 서버(저장소) 기록
-- 둘 다 있으면 **이 기기 기록이 우선**하고, `data.json` 기록은 병합되어 보입니다.
+- 앱에서 직접 누른 체크 → 브라우저 `localStorage` 키 `homet.calendar.v1` (그 기기 안에만 저장)
+- 이 저장소는 공개되어 있어 개인 기록을 올리지 않습니다. `data.json`·`fallback.js`의 `records`는 항상 비어 있습니다.
+- 기록은 기기에만 있으므로, 브라우저 데이터를 지우거나 기기를 바꾸면 함께 사라집니다(자동 백업 없음).
 - `이 날짜 기록 지우기` → 그 날짜만 기기 기록에서 지웁니다.
 - `내 기록 초기화`(하단) → 이 기기에 저장된 기록 전체를 지웁니다.
 

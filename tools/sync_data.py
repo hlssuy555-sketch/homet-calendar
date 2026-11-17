@@ -6,9 +6,11 @@
     python3 tools/sync_data.py ~/workouts/log.json   # 경로 직접 지정
 
 하는 일
-  · log.json 의 start_date / routine_name / equipment / weekly_plan / records /
+  · log.json 의 start_date / routine_name / equipment / weekly_plan /
     bodyweight_only_until 을
     data.json 에 그대로 옮깁니다. (운동 메뉴 menus, menu_labels 는 그대로 유지)
+  · 개인 운동 기록(log.json 의 records)은 옮기지 않습니다. 이 저장소는 공개되어 있어
+    data.json·fallback.js 의 records 는 항상 빈 객체({})로 유지합니다.
   · data.json 을 fallback.js(내장 사본)로 다시 만들어, fetch 가 막힌 환경에서도
     같은 내용으로 동작하게 합니다.
   · 끝나면 git add/commit/push 안내를 출력합니다.
@@ -24,7 +26,8 @@ ROOT = pathlib.Path(__file__).resolve().parent.parent
 DATA = ROOT / "data.json"
 FALLBACK = ROOT / "fallback.js"
 
-CARRY_KEYS = ["start_date", "routine_name", "equipment", "weekly_plan", "records",
+# records 는 공개 저장소에 올리지 않습니다(기기 localStorage 에만 저장).
+CARRY_KEYS = ["start_date", "routine_name", "equipment", "weekly_plan",
               "bodyweight_only_until"]
 HEADER = (
     "/* data.json과 같은 내용의 내장 사본 — fetch가 막힌 환경(file:// 등)에서 쓰입니다.\n"
@@ -60,9 +63,17 @@ def main() -> None:
             data[key] = log[key]
             changed.append(key)
 
+    # 개인 기록은 항상 비워 둔다(공개 저장소). log.json 쪽 기록은 건드리지 않는다.
+    private_records = len(log.get("records") or {})
+    if data.get("records") != {}:
+        data["records"] = {}
+        changed.append("records(비움)")
+
     if args.dry_run:
         print(f"log: {log_path}")
         print("변경될 항목:", ", ".join(changed) if changed else "없음")
+        if private_records:
+            print(f"log.json 기록 {private_records}건은 공개 저장소로 옮기지 않습니다(기기 저장 전용).")
         return
 
     DATA.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
@@ -71,10 +82,11 @@ def main() -> None:
 
     print(f"log: {log_path}")
     print("갱신된 항목:", ", ".join(changed) if changed else "없음 (이미 최신)")
-    print(f"기록 {len(data.get('records', {}))}건 · 시작일 {data.get('start_date')}")
+    print(f"공개 data.json 기록 {len(data.get('records', {}))}건(항상 0) · "
+          f"log.json 개인 기록 {private_records}건(공개 안 함) · 시작일 {data.get('start_date')}")
     print()
     print("배포하려면:")
-    print("  git add data.json fallback.js && git commit -m '기록 동기화' && git push")
+    print("  git add data.json fallback.js && git commit -m '루틴 동기화' && git push")
 
 
 if __name__ == "__main__":
