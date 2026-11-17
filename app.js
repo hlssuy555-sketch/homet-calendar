@@ -575,6 +575,18 @@
     return data;
   }
 
+  /** #d=2026-11-18 처럼 날짜를 지정하면 그 날짜 상세를 바로 연다 (아침 알림 링크용) */
+  function openFromHash() {
+    var m = /(?:^#|&)d=(\d{4}-\d{2}-\d{2})/.exec(location.hash || '');
+    if (!m) return;
+    var dt = dateFromKey(m[1]);
+    view.year = dt.getFullYear();
+    view.month = dt.getMonth() + 1;
+    renderHeader();
+    renderCalendar();
+    openSheet(m[1]);
+  }
+
   function boot() {
     loadLocal();
     var done = function (data) {
@@ -588,6 +600,8 @@
       bindEvents();
       setupPwa();
       $('sync-note').textContent = '기록은 이 기기에 저장됩니다';
+      openFromHash();
+      window.addEventListener('hashchange', openFromHash);
     };
 
     if (location.protocol === 'file:') { done(null); return; }
