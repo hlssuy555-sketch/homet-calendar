@@ -2,11 +2,12 @@
 """workouts/log.json → 이 웹앱의 data.json 동기화 도구.
 
 사용 예)
-    python3 tools/sync_data.py                       # ../../log.json 자동 탐색
+    python3 tools/sync_data.py                       # ../log.json 자동 탐색
     python3 tools/sync_data.py ~/workouts/log.json   # 경로 직접 지정
 
 하는 일
-  · log.json 의 start_date / routine_name / equipment / weekly_plan / records 를
+  · log.json 의 start_date / routine_name / equipment / weekly_plan / records /
+    bodyweight_only_until 을
     data.json 에 그대로 옮깁니다. (운동 메뉴 menus, menu_labels 는 그대로 유지)
   · data.json 을 fallback.js(내장 사본)로 다시 만들어, fetch 가 막힌 환경에서도
     같은 내용으로 동작하게 합니다.
@@ -23,7 +24,8 @@ ROOT = pathlib.Path(__file__).resolve().parent.parent
 DATA = ROOT / "data.json"
 FALLBACK = ROOT / "fallback.js"
 
-CARRY_KEYS = ["start_date", "routine_name", "equipment", "weekly_plan", "records"]
+CARRY_KEYS = ["start_date", "routine_name", "equipment", "weekly_plan", "records",
+              "bodyweight_only_until"]
 HEADER = (
     "/* data.json과 같은 내용의 내장 사본 — fetch가 막힌 환경(file:// 등)에서 쓰입니다.\n"
     "   tools/sync_data.py 로 data.json과 함께 갱신됩니다. 직접 수정하지 마세요. */\n"

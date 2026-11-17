@@ -21,6 +21,13 @@
 | `icon-*.png`, `icon.svg` | 아이콘 |
 | `tools/sync_data.py` | `workouts/log.json` → `data.json` 동기화 도구 |
 
+## 2주 맨몸 적응기 (2026-11-18 ~ 2026-12-01)
+
+- `data.json`의 `bodyweight_only_until`(현재 `2026-12-01`)까지는 `bodyweight_menus`(맨몸 전용)가,
+  그 다음 날부터는 `menus`(바벨 27kg·7kg 빈 바·10kg 원판·풀업바·밴드·푸시업바) 가 자동으로 쓰입니다.
+- 앱 상단과 날짜 상세 패널에 `1~2주 차 · 맨몸 적응` / `3주 차~ · 기구 루틴` 배지가 표시됩니다.
+- `bodyweight_only_until`만 바꾸면 기간이 늘거나 줄어듭니다(그 날짜까지 맨몸).
+
 ## 운동 메뉴 고치기
 
 `data.json`의 `menus` 를 고치면 됩니다. 항목 하나는 이렇게 생겼습니다.
@@ -44,11 +51,11 @@
 
 ```bash
 cd workouts/webapp
-python3 tools/sync_data.py ../../log.json   # data.json + fallback.js 갱신
+python3 tools/sync_data.py            # workouts/log.json 자동 탐색 → data.json + fallback.js 갱신
 git add -A && git commit -m "기록 동기화" && git push
 ```
 
-`sync_data.py`는 `start_date`·`routine_name`·`equipment`·`weekly_plan`·`records`만
+`sync_data.py`는 `start_date`·`routine_name`·`equipment`·`weekly_plan`·`records`·`bodyweight_only_until`만
 옮기고 `menus`·`menu_labels`는 그대로 둡니다.
 
 ## 기록이 저장되는 곳

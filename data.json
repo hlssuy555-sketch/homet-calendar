@@ -12,7 +12,7 @@
   "equipment_chips": [
     "풀업바",
     "풀업밴드",
-    "바벨 7kg / 17kg / 27kg",
+    "바벨 7kg / 27kg",
     "10kg 원판",
     "푸시업바",
     "맨몸"
@@ -80,11 +80,11 @@
         },
         {
           "id": "push-ohp",
-          "name": "바벨 오버헤드 프레스",
-          "equipment": "바벨 17kg",
+          "name": "10kg 원판 숄더 프레스",
+          "equipment": "10kg 원판",
           "sets": 3,
-          "reps": "8~10회",
-          "note": "7kg 바 + 10kg 원판 1장. 배에 힘주고 머리 위로"
+          "reps": "8~12회",
+          "note": "원판을 양손으로 잡고 머리 위로. 부담되면 풀업밴드 숄더 프레스로"
         },
         {
           "id": "push-band-lateral",
@@ -143,11 +143,11 @@
         },
         {
           "id": "pull-barbell-curl",
-          "name": "바벨 컬",
-          "equipment": "바벨 17kg",
+          "name": "바벨 컬 (7kg 빈 바)",
+          "equipment": "바벨 7kg",
           "sets": 3,
-          "reps": "10~12회",
-          "note": "팔꿈치 고정. 반동 없이"
+          "reps": "12~15회",
+          "note": "빈 바 7kg 고반복. 자극이 약하면 풀업밴드 컬 추가"
         },
         {
           "id": "pull-hammer-curl",
@@ -277,5 +277,219 @@
       "items": []
     }
   },
-  "records": {}
+  "records": {},
+  "bodyweight_only_until": "2026-12-01",
+  "bodyweight_menus": {
+    "push": {
+      "title": "가슴·어깨·삼두",
+      "goal": "맨몸 미는 날",
+      "duration": "20~25분",
+      "items": [
+        {
+          "id": "bw-pushup",
+          "name": "푸시업 (푸시업바)",
+          "equipment": "맨몸",
+          "sets": 4,
+          "reps": "10~15회",
+          "note": "무릎 대고 해도 OK. 손목은 푸시업바에"
+        },
+        {
+          "id": "bw-pike",
+          "name": "파이크 푸시업",
+          "equipment": "맨몸",
+          "sets": 3,
+          "reps": "8~12회",
+          "note": "엉덩이를 높이 올려 어깨로 밀기"
+        },
+        {
+          "id": "bw-dips",
+          "name": "의자 딥스",
+          "equipment": "맨몸 (의자·침대 끝)",
+          "sets": 3,
+          "reps": "10~12회",
+          "note": "팔꿈치 뒤로. 삼두 집중"
+        },
+        {
+          "id": "bw-pushup-hold",
+          "name": "푸시업 홀드",
+          "equipment": "맨몸",
+          "sets": 2,
+          "reps": "20~30초",
+          "note": "중간 지점에서 버티기"
+        },
+        {
+          "id": "bw-shoulder-tap",
+          "name": "플랭크 숄더 탭",
+          "equipment": "맨몸",
+          "sets": 3,
+          "reps": "양손 20회",
+          "note": "골반 흔들리지 않게"
+        }
+      ]
+    },
+    "pull": {
+      "title": "등·이두",
+      "goal": "맨몸 당기는 날",
+      "duration": "20~25분",
+      "items": [
+        {
+          "id": "bw-pullup-assist",
+          "name": "밴드·네거티브 풀업",
+          "equipment": "풀업바 + 풀업밴드",
+          "sets": 4,
+          "reps": "3~6회",
+          "note": "밴드 보조 또는 천천히 내려오기만 해도 OK"
+        },
+        {
+          "id": "bw-dead-hang",
+          "name": "데드행 매달리기",
+          "equipment": "풀업바",
+          "sets": 3,
+          "reps": "20~30초",
+          "note": "어깨가 귀에 붙지 않게"
+        },
+        {
+          "id": "bw-inverted-row",
+          "name": "테이블 인버티드 로우",
+          "equipment": "맨몸 (튼튼한 테이블)",
+          "sets": 3,
+          "reps": "8~12회",
+          "note": "몸을 일직선으로, 가슴을 손 쪽으로"
+        },
+        {
+          "id": "bw-superman-ytw",
+          "name": "슈퍼맨 Y-T-W",
+          "equipment": "맨몸",
+          "sets": 3,
+          "reps": "각 10회",
+          "note": "엎드려 팔을 Y·T·W 모양으로"
+        },
+        {
+          "id": "bw-towel-curl",
+          "name": "수건 이두 컬",
+          "equipment": "맨몸 (수건·문틀)",
+          "sets": 2,
+          "reps": "12회",
+          "note": "수건을 발로 밟고 당기며 버티기"
+        }
+      ]
+    },
+    "lower_core": {
+      "title": "하체·코어",
+      "goal": "맨몸 하체·코어",
+      "duration": "20~25분",
+      "items": [
+        {
+          "id": "bw-squat",
+          "name": "맨몸 스쿼트",
+          "equipment": "맨몸",
+          "sets": 4,
+          "reps": "15~20회",
+          "note": "허벅지가 바닥과 평행까지. 자세 먼저"
+        },
+        {
+          "id": "bw-reverse-lunge",
+          "name": "리버스 런지",
+          "equipment": "맨몸",
+          "sets": 3,
+          "reps": "양발 10회",
+          "note": "뒤로 딛고 내려가기. 무릎 흔들리지 않게"
+        },
+        {
+          "id": "bw-glute-bridge",
+          "name": "글루트 브릿지",
+          "equipment": "맨몸",
+          "sets": 3,
+          "reps": "15~20회",
+          "note": "위에서 엉덩이 1초 조이기"
+        },
+        {
+          "id": "bw-calf-raise",
+          "name": "카프 레이즈",
+          "equipment": "맨몸",
+          "sets": 3,
+          "reps": "20회",
+          "note": "발끝으로 천천히 올라갔다 내려오기"
+        },
+        {
+          "id": "bw-plank",
+          "name": "플랭크",
+          "equipment": "맨몸",
+          "sets": 3,
+          "reps": "30~40초",
+          "note": "허리 처지지 않게 일직선"
+        },
+        {
+          "id": "bw-leg-raise",
+          "name": "레그 레이즈",
+          "equipment": "맨몸",
+          "sets": 3,
+          "reps": "12회",
+          "note": "허리 들뜨지 않게 천천히"
+        }
+      ]
+    },
+    "pull_lower": {
+      "title": "등·하체",
+      "goal": "맨몸 등·하체",
+      "duration": "20~25분",
+      "items": [
+        {
+          "id": "bw-pullup-assist2",
+          "name": "밴드 보조 풀업",
+          "equipment": "풀업바 + 풀업밴드",
+          "sets": 3,
+          "reps": "3~6회",
+          "note": "2~3세트만 해도 충분"
+        },
+        {
+          "id": "bw-squat2",
+          "name": "맨몸 스쿼트",
+          "equipment": "맨몸",
+          "sets": 3,
+          "reps": "15~20회",
+          "note": "수요일보다 살짝 가볍게"
+        },
+        {
+          "id": "bw-reverse-lunge2",
+          "name": "리버스 런지",
+          "equipment": "맨몸",
+          "sets": 3,
+          "reps": "양발 8~10회",
+          "note": "균형 잡히면 더 천천히"
+        },
+        {
+          "id": "bw-superman",
+          "name": "슈퍼맨 백 익스텐션",
+          "equipment": "맨몸",
+          "sets": 3,
+          "reps": "12회",
+          "note": "등·엉덩이를 동시에 조이기"
+        },
+        {
+          "id": "bw-good-morning",
+          "name": "맨몸 굿모닝",
+          "equipment": "맨몸",
+          "sets": 3,
+          "reps": "15회",
+          "note": "엉덩이 뒤로, 등은 곧게"
+        },
+        {
+          "id": "bw-plank2",
+          "name": "플랭크",
+          "equipment": "맨몸",
+          "sets": 2,
+          "reps": "40초",
+          "note": "마무리 코어"
+        }
+      ]
+    },
+    "rest": {
+      "title": "주말 휴식",
+      "goal": "운동 쉬는 날",
+      "duration": "휴식",
+      "note": "토·일은 운동 쉬는 날이에요. 푹 쉬고 회복하세요!",
+      "items": []
+    }
+  }
 }

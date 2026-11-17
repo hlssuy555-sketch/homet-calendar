@@ -71,16 +71,42 @@
   }
 
   /* ---------- 날짜 정보 ---------- */
+  var PHASE_BW_LABEL = '1~2주 차 · 맨몸 적응';
+  var PHASE_EQ_LABEL = '3주 차~ · 기구 루틴';
+
+  function isBodyweightPhase(k) {
+    return !!(DATA && DATA.bodyweight_only_until && k && k <= DATA.bodyweight_only_until);
+  }
+
+  function phaseInfo(k) {
+    var bw = isBodyweightPhase(k);
+    return {
+      key: bw ? 'bodyweight' : 'equipment',
+      label: bw ? PHASE_BW_LABEL : PHASE_EQ_LABEL
+    };
+  }
+
+  function shortDate(k) {
+    var p = String(k || '').split('-');
+    if (p.length < 3) return k || '';
+    return Number(p[1]) + '/' + Number(p[2]);
+  }
+
   function planInfoFor(dt) {
+    var k = keyOfDate(dt);
     var wk = weekdayKey(dt);
     var planKey = (DATA.weekly_menu && DATA.weekly_menu[wk]) || 'rest';
-    var menu = (DATA.menus && DATA.menus[planKey]) || null;
+    var phase = phaseInfo(k);
+    var source = (phase.key === 'bodyweight' && DATA.bodyweight_menus) ? DATA.bodyweight_menus : DATA.menus;
+    var menu = (source && source[planKey]) || null;
     return {
       weekday: wk,
       weekdayName: WEEKDAY_NAMES[(dt.getDay() + 6) % 7],
       planKey: planKey,
       planLabel: (DATA.weekly_plan && DATA.weekly_plan[wk]) || (menu ? menu.title : '휴식'),
       menu: menu,
+      phase: phase.key,
+      phaseLabel: phase.label,
       short: (DATA.menu_labels && DATA.menu_labels[planKey]) || null
     };
   }
@@ -148,7 +174,20 @@
     $('stat-done').textContent = st.done;
     $('stat-rest').textContent = st.rest;
     $('stat-streak').textContent = computeStreak();
-    if (DATA.routine_name) $('routine-line').textContent = DATA.routine_name + ' · 아침 ' + (DATA.start_time || '07:00');
+
+    var tPhase = phaseInfo(todayKey);
+    $('routine-line').textContent = tPhase.label +
+      (tPhase.key === 'bodyweight' ? ' (' + shortDate(DATA.bodyweight_only_until) + '까지)' : '');
+
+    var line = $('phase-line');
+    if (DATA.bodyweight_only_until) {
+      var from = DATA.start_date ? shortDate(DATA.start_date) : '';
+      var until = shortDate(DATA.bodyweight_only_until);
+      line.hidden = false;
+      line.textContent = '맨몸 적응: ' + from + '~' + until + ' · ' + until + ' 이후 기구 투입';
+    } else {
+      line.hidden = true;
+    }
   }
 
   function cellEl(dt) {
@@ -262,8 +301,9 @@
 
     if (isBeforeStart(todayKey)) {
       title.textContent = (plan.menu ? plan.menu.title : '휴식') + ' — ' + DATA.start_date + ' 시작';
-      sub.textContent = '오늘은 시작 전입니다. ' + (plan.menu ? plan.menu.duration : '') + ' 코스로 미리 볼 수 있어요.';
+      sub.textContent = '오늘은 시작 전입니다. ' + (plan.menu ? plan.menu.duration : '') + ' 맨몸 코스로 미리 볼 수 있어요.';
       btn.textContent = '이번 주 루틴 보기';
+      $('today-phase').hidden = true;
     } else {
       title.textContent = plan.menu ? plan.menu.title : plan.planLabel;
       var stateText = '예정';
@@ -277,6 +317,10 @@
         sub.textContent = (plan.menu ? plan.menu.goal + ' · ' + plan.menu.duration : '휴식') + ' · ' + stateText;
         btn.textContent = st === 'done' ? '오늘 기록 보기' : '오늘 운동 보기';
       }
+      var phaseChip = $('today-phase');
+      phaseChip.hidden = false;
+      phaseChip.textContent = plan.phaseLabel;
+      phaseChip.className = 'phase-pill ' + (plan.phase === 'bodyweight' ? 'phase-bw' : 'phase-eq');
     }
 
     btn.onclick = function () { openSheet(todayKey); };
@@ -322,8 +366,11 @@
     [(plan.menu ? plan.menu.title : plan.planLabel), goal, dur].forEach(function (part) {
       if (part && subParts.indexOf(part) === -1) subParts.push(part);
     });
-    $('sheet-sub').textContent = subParts.join(' · ') +
+    var subText = subParts.join(' · ') +
       (isBeforeStart(k) ? ' · ' + DATA.start_date + ' 시작 전' : '');
+    $('sheet-sub').innerHTML =
+      '<span class="phase-pill ' + (plan.phase === 'bodyweight' ? 'phase-bw' : 'phase-eq') + '">' +
+      escapeHtml(plan.phaseLabel) + '</span> ' + escapeHtml(subText);
 
     var buttons = document.querySelectorAll('.status-btn');
     for (var i = 0; i < buttons.length; i++) {

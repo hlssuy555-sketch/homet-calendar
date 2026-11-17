@@ -10,10 +10,10 @@
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-status-bar-style" content="default" />
 <meta name="apple-mobile-web-app-title" content="홈트달력" />
-<link rel="manifest" href="./manifest.json?v=6" />
+<link rel="manifest" href="./manifest.json?v=7" />
 <link rel="icon" href="./icon.svg" type="image/svg+xml" />
 <link rel="apple-touch-icon" href="./apple-touch-icon.png" />
-<link rel="stylesheet" href="./style.css?v=6" />
+<link rel="stylesheet" href="./style.css?v=7" />
 </head>
 <body>
 <header class="app-header">
@@ -57,10 +57,13 @@
 
   <div class="calendar" id="calendar" role="grid" aria-label="월간 홈트 달력"></div>
 
+  <p class="phase-line" id="phase-line" hidden></p>
+
   <section class="today-card" id="today-card" hidden>
     <div class="today-card-head">
       <span class="today-badge">오늘</span>
       <strong id="today-title">-</strong>
+      <span class="phase-pill phase-bw" id="today-phase" hidden>1~2주 차 · 맨몸 적응</span>
     </div>
     <p class="today-sub" id="today-sub">-</p>
     <button class="primary-btn" id="today-open" type="button">오늘 운동 보기</button>
@@ -122,7 +125,7 @@
   </div>
 </section>
 
-<script src="./fallback.js?v=6"></script>
-<script src="./app.js?v=6"></script>
+<script src="./fallback.js?v=7"></script>
+<script src="./app.js?v=7"></script>
 </body>
 </html>
