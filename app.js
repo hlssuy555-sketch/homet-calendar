@@ -101,8 +101,8 @@
     if (st === 'rest') return { text: '휴식', cls: 'badge-rest', cell: 'is-rest' };
     if (st === 'skipped') return { text: '미실시', cls: '', cell: 'is-skipped' };
     if (st === 'inprogress') return { text: '진행', cls: 'badge-plan', cell: 'is-progress' };
+    if (k === todayKey) return { text: '오늘', cls: 'badge-today', cell: isBeforeStart(k) ? 'is-before' : '' };
     if (isBeforeStart(k)) return { text: '', cls: '', cell: 'is-before' };
-    if (k === todayKey) return { text: '오늘', cls: 'badge-today', cell: 'is-today' };
     if (k > todayKey) return { text: '예정', cls: 'badge-plan', cell: 'is-plan' };
     return { text: '미기록', cls: '', cell: '' };
   }
