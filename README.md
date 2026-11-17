@@ -58,3 +58,12 @@ git add -A && git commit -m "기록 동기화" && git push
 - 둘 다 있으면 **이 기기 기록이 우선**하고, `data.json` 기록은 병합되어 보입니다.
 - `이 날짜 기록 지우기` → 그 날짜만 기기 기록에서 지웁니다.
 - `내 기록 초기화`(하단) → 이 기기에 저장된 기록 전체를 지웁니다.
+
+## 고칠 때 주의
+
+- `style.css`, `app.js`, `fallback.js`, `manifest.json` 을 고치면 `index.html` 의 `?v=` 숫자를 하나 올려 주세요.
+  (GitHub Pages 는 정적 파일을 10분간 캐시하고, service worker 도 앱 셸을 캐시합니다.)
+- `preview/mobile.html` — 갤럭시 폭(360/390/412px)과 날짜 상세 패널을 한 화면에서 확인하는 점검용 페이지입니다.
+  배포 URL 뒤에 `/preview/mobile.html` 을 붙이면 열립니다.
+- 날짜 딥링크: `https://hlssuy555-sketch.github.io/homet-calendar/#d=2026-11-19` 처럼
+  `#d=YYYY-MM-DD` 를 붙이면 그 날짜 상세 패널이 바로 열립니다(아침 알림 링크에 사용).
