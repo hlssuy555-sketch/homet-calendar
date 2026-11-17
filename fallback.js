@@ -378,7 +378,7 @@ window.__HOMET_FALLBACK__ = {
     },
     "lower_core": {
       "title": "하체·코어",
-      "goal": "맨몸 하체·코어",
+      "goal": "상체 쉬는 날",
       "duration": "20~25분",
       "items": [
         {
@@ -433,7 +433,7 @@ window.__HOMET_FALLBACK__ = {
     },
     "pull_lower": {
       "title": "등·하체",
-      "goal": "맨몸 등·하체",
+      "goal": "2차 등·하체 (맨몸)",
       "duration": "20~25분",
       "items": [
         {
