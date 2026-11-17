@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<title>아침 7시 홈트 달력</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#0F766E" />
+<meta name="description" content="아침 7시 홈트 루틴과 기록을 한눈에 보는 달력" />
+<meta name="mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="default" />
+<meta name="apple-mobile-web-app-title" content="홈트달력" />
+<link rel="manifest" href="./manifest.json" />
+<link rel="icon" href="./icon.svg" type="image/svg+xml" />
+<link rel="apple-touch-icon" href="./apple-touch-icon.png" />
+<link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+<header class="app-header">
+  <div class="title-row">
+    <div>
+      <h1>아침 7시 홈트 달력</h1>
+      <p class="subtitle" id="routine-line">추천 5일 루틴 · 아침 7:00</p>
+    </div>
+    <button class="install-btn" id="install-btn" type="button" hidden>앱 설치</button>
+  </div>
+
+  <div class="month-nav">
+    <button class="nav-btn" id="prev-month" type="button" aria-label="이전 달">‹</button>
+    <div class="month-block">
+      <span class="month-label" id="month-label">2026년 11월</span>
+      <button class="today-btn" id="today-btn" type="button">오늘</button>
+    </div>
+    <button class="nav-btn" id="next-month" type="button" aria-label="다음 달">›</button>
+  </div>
+
+  <div class="stats">
+    <div class="stat stat-done">
+      <span class="stat-value" id="stat-done">0</span>
+      <span class="stat-label">완료</span>
+    </div>
+    <div class="stat stat-streak">
+      <span class="stat-value" id="stat-streak">0</span>
+      <span class="stat-label">연속 달성</span>
+    </div>
+    <div class="stat stat-rest">
+      <span class="stat-value" id="stat-rest">0</span>
+      <span class="stat-label">휴식</span>
+    </div>
+  </div>
+</header>
+
+<main class="app-main">
+  <div class="weekday-row" aria-hidden="true">
+    <span>월</span><span>화</span><span>수</span><span>목</span><span>금</span><span class="sat">토</span><span class="sun">일</span>
+  </div>
+
+  <div class="calendar" id="calendar" role="grid" aria-label="월간 홈트 달력"></div>
+
+  <section class="today-card" id="today-card" hidden>
+    <div class="today-card-head">
+      <span class="today-badge">오늘</span>
+      <strong id="today-title">-</strong>
+    </div>
+    <p class="today-sub" id="today-sub">-</p>
+    <button class="primary-btn" id="today-open" type="button">오늘 운동 보기</button>
+  </section>
+
+  <section class="legend">
+    <span class="legend-item"><i class="dot dot-done"></i>완료</span>
+    <span class="legend-item"><i class="dot dot-rest"></i>휴식</span>
+    <span class="legend-item"><i class="dot dot-plan"></i>예정</span>
+    <span class="legend-item"><i class="dot dot-today"></i>오늘</span>
+  </section>
+
+  <section class="equipment">
+    <h2>보유 기구</h2>
+    <div class="chips" id="equipment-chips"></div>
+    <p class="hint">홈 화면에 추가: 삼성 인터넷 · 크롬 메뉴 <b>⋮</b> → <b>홈 화면에 추가</b></p>
+  </section>
+
+  <footer class="app-footer">
+    <span id="sync-note">기록은 이 기기에 저장됩니다</span>
+    <button class="link-btn" id="reset-btn" type="button">내 기록 초기화</button>
+  </footer>
+</main>
+
+<div class="sheet-backdrop" id="sheet-backdrop" hidden></div>
+
+<section class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="sheet-title" hidden>
+  <div class="sheet-grip" aria-hidden="true"></div>
+  <header class="sheet-head">
+    <div>
+      <h2 id="sheet-title">11월 18일 (수)</h2>
+      <p class="sheet-sub" id="sheet-sub">하체·코어 · 25~30분</p>
+    </div>
+    <button class="close-btn" id="sheet-close" type="button" aria-label="닫기">✕</button>
+  </header>
+
+  <div class="sheet-body" id="sheet-body">
+    <div class="status-row" role="group" aria-label="이 날짜 상태">
+      <button class="status-btn status-done" data-status="done" type="button">완료</button>
+      <button class="status-btn status-rest" data-status="rest" type="button">휴식</button>
+      <button class="status-btn status-other" data-status="other" type="button">다른 운동</button>
+    </div>
+    <div class="memo-wrap" id="memo-wrap" hidden>
+      <input id="memo-input" class="memo-input" type="text" maxlength="40" placeholder="예: 수영 40분, 등산" />
+      <button class="memo-save" id="memo-save" type="button">저장</button>
+    </div>
+
+    <div class="menu-head">
+      <h3 id="menu-title">오늘의 운동</h3>
+      <span class="set-progress" id="set-progress">0/0 세트</span>
+    </div>
+    <ul class="exercise-list" id="exercise-list"></ul>
+
+    <div class="note-box" id="record-note" hidden></div>
+
+    <div class="sheet-actions">
+      <button class="ghost-btn" id="clear-day" type="button">이 날짜 기록 지우기</button>
+    </div>
+  </div>
+</section>
+
+<script src="./fallback.js"></script>
+<script src="./app.js"></script>
+</body>
+</html>

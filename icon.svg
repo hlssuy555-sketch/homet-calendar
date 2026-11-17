@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="아침 7시 홈트 달력">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="3" y2="0">
+      <stop offset="0" stop-color="#0F766E"/>
+      <stop offset="0.6" stop-color="#0D9488"/>
+      <stop offset="1" stop-color="#14B8A6"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="112" fill="url(#g)"/>
+  <circle cx="384" cy="132" r="46" fill="#FDE68A" opacity="0.28"/>
+  <circle cx="384" cy="132" r="30" fill="#FDE68A" opacity="0.55"/>
+  <g fill="#FFFFFF">
+    <rect x="196" y="216" width="120" height="20" rx="10"/>
+    <rect x="150" y="188" width="26" height="76" rx="12"/>
+    <rect x="118" y="200" width="20" height="52" rx="10"/>
+    <rect x="336" y="188" width="26" height="76" rx="12"/>
+    <rect x="374" y="200" width="20" height="52" rx="10"/>
+    <rect x="168" y="300" width="176" height="14" rx="7" opacity="0.75"/>
+  </g>
+  <text x="256" y="392" font-family="Helvetica, Arial, sans-serif" font-size="86" font-weight="700" fill="#FFFFFF" text-anchor="middle" opacity="0.95">7:00</text>
+</svg>

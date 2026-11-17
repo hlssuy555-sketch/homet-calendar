@@ -1,0 +1,283 @@
+{
+  "start_date": "2026-11-18",
+  "start_time": "07:00",
+  "check_time": "08:00",
+  "routine_name": "아침 7시 홈트 (추천 5일 루틴)",
+  "equipment": [
+    "풀업바",
+    "풀업밴드",
+    "바벨 (7kg 바 + 10kg 원판 2장, 최대 27kg)",
+    "푸시업바"
+  ],
+  "equipment_chips": [
+    "풀업바",
+    "풀업밴드",
+    "바벨 7kg / 17kg / 27kg",
+    "10kg 원판",
+    "푸시업바",
+    "맨몸"
+  ],
+  "weekly_plan": {
+    "mon": "가슴·어깨·삼두",
+    "tue": "등·이두",
+    "wed": "하체·코어",
+    "thu": "가슴·어깨·삼두",
+    "fri": "등·하체",
+    "sat": "휴식",
+    "sun": "휴식"
+  },
+  "weekly_menu": {
+    "mon": "push",
+    "tue": "pull",
+    "wed": "lower_core",
+    "thu": "push",
+    "fri": "pull_lower",
+    "sat": "rest",
+    "sun": "rest"
+  },
+  "menu_labels": {
+    "push": ["가슴·어깨", "삼두"],
+    "pull": ["등", "이두"],
+    "lower_core": ["하체", "코어"],
+    "pull_lower": ["등", "하체"],
+    "rest": ["휴식"]
+  },
+  "menus": {
+    "push": {
+      "title": "가슴·어깨·삼두",
+      "goal": "미는 날",
+      "duration": "25~30분",
+      "items": [
+        {
+          "id": "push-floor-press",
+          "name": "바벨 플로어 프레스",
+          "equipment": "바벨 27kg",
+          "sets": 4,
+          "reps": "8~10회",
+          "note": "바닥에 누워 팔꿈치 45°. 가슴 옆에서 위로 밀기"
+        },
+        {
+          "id": "push-pushup-bar",
+          "name": "푸시업바 푸시업",
+          "equipment": "푸시업바",
+          "sets": 3,
+          "reps": "10~12회",
+          "note": "손목 부담 없이 깊게. 좁게 잡으면 삼두"
+        },
+        {
+          "id": "push-ohp",
+          "name": "바벨 오버헤드 프레스",
+          "equipment": "바벨 17kg",
+          "sets": 3,
+          "reps": "8~10회",
+          "note": "7kg 바 + 10kg 원판 1장. 배에 힘주고 머리 위로"
+        },
+        {
+          "id": "push-band-lateral",
+          "name": "풀업밴드 사이드 레터럴 레이즈",
+          "equipment": "풀업밴드",
+          "sets": 3,
+          "reps": "12~15회",
+          "note": "밴드 밟고 양옆으로 들어올리기. 어깨 옆면"
+        },
+        {
+          "id": "push-diamond",
+          "name": "푸시업바 다이아몬드 푸시업",
+          "equipment": "푸시업바",
+          "sets": 3,
+          "reps": "8~10회",
+          "note": "양손을 가깝게. 삼두 집중"
+        },
+        {
+          "id": "push-dead-hang",
+          "name": "풀업바 매달리기",
+          "equipment": "풀업바",
+          "sets": 2,
+          "reps": "30초",
+          "note": "어깨·그립 마무리 스트레칭"
+        }
+      ]
+    },
+    "pull": {
+      "title": "등·이두",
+      "goal": "당기는 날",
+      "duration": "25~30분",
+      "items": [
+        {
+          "id": "pull-pullup",
+          "name": "풀업 (밴드 보조 가능)",
+          "equipment": "풀업바 + 풀업밴드",
+          "sets": 4,
+          "reps": "5~8회",
+          "note": "가슴을 바에 붙인다는 느낌으로"
+        },
+        {
+          "id": "pull-bent-row",
+          "name": "바벨 벤트오버 로우",
+          "equipment": "바벨 27kg",
+          "sets": 4,
+          "reps": "10회",
+          "note": "허리 중립 유지, 팔이 아니라 등으로 당기기"
+        },
+        {
+          "id": "pull-band-row",
+          "name": "풀업밴드 시티드 로우",
+          "equipment": "풀업밴드",
+          "sets": 3,
+          "reps": "12회",
+          "note": "밴드를 발에 걸고 앉아서 당기기"
+        },
+        {
+          "id": "pull-barbell-curl",
+          "name": "바벨 컬",
+          "equipment": "바벨 17kg",
+          "sets": 3,
+          "reps": "10~12회",
+          "note": "팔꿈치 고정. 반동 없이"
+        },
+        {
+          "id": "pull-hammer-curl",
+          "name": "풀업밴드 해머 컬",
+          "equipment": "풀업밴드",
+          "sets": 2,
+          "reps": "12회",
+          "note": "손바닥 마주보게. 이두 바깥쪽"
+        }
+      ]
+    },
+    "lower_core": {
+      "title": "하체·코어",
+      "goal": "상체 휴식하는 날",
+      "duration": "25~30분",
+      "items": [
+        {
+          "id": "lower-squat",
+          "name": "바벨 백 스쿼트",
+          "equipment": "바벨 27kg",
+          "sets": 4,
+          "reps": "10~12회",
+          "note": "무릎과 발끝 같은 방향. 허벅지까지 앉기"
+        },
+        {
+          "id": "lower-rdl",
+          "name": "루마니안 데드리프트",
+          "equipment": "바벨 27kg",
+          "sets": 3,
+          "reps": "10회",
+          "note": "엉덩이 뒤로 빼며 햄스트링 늘어나는 느낌"
+        },
+        {
+          "id": "lower-plate-lunge",
+          "name": "10kg 원판 런지",
+          "equipment": "10kg 원판",
+          "sets": 3,
+          "reps": "양발 10회",
+          "note": "원판을 가슴 앞에 들고 한 발씩"
+        },
+        {
+          "id": "lower-hip-thrust",
+          "name": "바벨 힙 쓰러스트",
+          "equipment": "바벨 27kg",
+          "sets": 3,
+          "reps": "12회",
+          "note": "위에서 엉덩이 1초 조이기"
+        },
+        {
+          "id": "lower-hanging-knee",
+          "name": "풀업바 행잉 니 레이즈",
+          "equipment": "풀업바",
+          "sets": 3,
+          "reps": "10회",
+          "note": "복부 수축. 몸 흔들리지 않게"
+        },
+        {
+          "id": "lower-plank",
+          "name": "플랭크",
+          "equipment": "맨몸",
+          "sets": 3,
+          "reps": "40초",
+          "note": "허리 처지지 않게 일직선"
+        }
+      ]
+    },
+    "pull_lower": {
+      "title": "등·하체",
+      "goal": "주 2차 등·하체",
+      "duration": "25~30분",
+      "items": [
+        {
+          "id": "pl-pullup",
+          "name": "풀업 (밴드 보조 가능)",
+          "equipment": "풀업바 + 풀업밴드",
+          "sets": 4,
+          "reps": "5~8회",
+          "note": "화요일보다 1회라도 더"
+        },
+        {
+          "id": "pl-deadlift",
+          "name": "바벨 데드리프트",
+          "equipment": "바벨 27kg",
+          "sets": 3,
+          "reps": "8회",
+          "note": "바를 몸 가까이. 등 펴고 일어나기"
+        },
+        {
+          "id": "pl-goblet",
+          "name": "10kg 원판 고블릿 스쿼트",
+          "equipment": "10kg 원판",
+          "sets": 3,
+          "reps": "12회",
+          "note": "원판을 가슴 앞에 안고 앉기"
+        },
+        {
+          "id": "pl-row",
+          "name": "바벨 벤트오버 로우",
+          "equipment": "바벨 27kg",
+          "sets": 3,
+          "reps": "10회",
+          "note": "수요일 하체 피로 오면 무게 줄여도 OK"
+        },
+        {
+          "id": "pl-hanging-leg",
+          "name": "풀업바 행잉 레그 레이즈",
+          "equipment": "풀업바",
+          "sets": 3,
+          "reps": "8~10회",
+          "note": "다리 곧게 들면 더 어려움"
+        },
+        {
+          "id": "pl-face-pull",
+          "name": "풀업밴드 페이스 풀",
+          "equipment": "풀업밴드",
+          "sets": 3,
+          "reps": "15회",
+          "note": "어깨 뒤쪽·자세 교정"
+        }
+      ]
+    },
+    "rest": {
+      "title": "휴식",
+      "goal": "회복하는 날",
+      "duration": "10~20분",
+      "items": [
+        {
+          "id": "rest-stretch",
+          "name": "전신 스트레칭",
+          "equipment": "맨몸",
+          "sets": 1,
+          "reps": "10분",
+          "note": "가슴·어깨·햄스트링 위주로 천천히"
+        },
+        {
+          "id": "rest-walk",
+          "name": "가벼운 걷기",
+          "equipment": "맨몸",
+          "sets": 1,
+          "reps": "20분",
+          "note": "숨이 편한 속도로"
+        }
+      ]
+    }
+  },
+  "records": {}
+}
