@@ -272,27 +272,11 @@ window.__HOMET_FALLBACK__ = {
       ]
     },
     "rest": {
-      "title": "휴식",
-      "goal": "회복하는 날",
-      "duration": "10~20분",
-      "items": [
-        {
-          "id": "rest-stretch",
-          "name": "전신 스트레칭",
-          "equipment": "맨몸",
-          "sets": 1,
-          "reps": "10분",
-          "note": "가슴·어깨·햄스트링 위주로 천천히"
-        },
-        {
-          "id": "rest-walk",
-          "name": "가벼운 걷기",
-          "equipment": "맨몸",
-          "sets": 1,
-          "reps": "20분",
-          "note": "숨이 편한 속도로"
-        }
-      ]
+      "title": "주말 휴식",
+      "goal": "운동 쉬는 날",
+      "duration": "휴식",
+      "note": "토·일은 운동 쉬는 날이에요. 푹 쉬고 회복하세요!",
+      "items": []
     }
   },
   "records": {}

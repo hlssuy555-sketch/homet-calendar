@@ -103,6 +103,8 @@
     if (st === 'inprogress') return { text: '진행', cls: 'badge-plan', cell: 'is-progress' };
     if (k === todayKey) return { text: '오늘', cls: 'badge-today', cell: isBeforeStart(k) ? 'is-before' : '' };
     if (isBeforeStart(k)) return { text: '', cls: '', cell: 'is-before' };
+    // 주말 휴식일은 '예정'으로 보이지 않게 조용히 회색으로만 표시
+    if (plan && plan.planKey === 'rest') return { text: '', cls: '', cell: 'is-rest' };
     if (k > todayKey) return { text: '예정', cls: 'badge-plan', cell: 'is-plan' };
     return { text: '미기록', cls: '', cell: '' };
   }
@@ -268,8 +270,13 @@
       if (st === 'done') stateText = '완료';
       else if (st === 'rest') stateText = '휴식';
       else if (st === 'inprogress') stateText = '진행 중';
-      sub.textContent = (plan.menu ? plan.menu.goal + ' · ' + plan.menu.duration : '휴식') + ' · ' + stateText;
-      btn.textContent = st === 'done' ? '오늘 기록 보기' : '오늘 운동 보기';
+      if (plan.planKey === 'rest') {
+        sub.textContent = '운동 쉬는 날 · ' + stateText;
+        btn.textContent = st === 'done' ? '오늘 기록 보기' : '휴식 안내 보기';
+      } else {
+        sub.textContent = (plan.menu ? plan.menu.goal + ' · ' + plan.menu.duration : '휴식') + ' · ' + stateText;
+        btn.textContent = st === 'done' ? '오늘 기록 보기' : '오늘 운동 보기';
+      }
     }
 
     btn.onclick = function () { openSheet(todayKey); };
@@ -311,8 +318,11 @@
     $('sheet-title').textContent = (dt.getMonth() + 1) + '월 ' + dt.getDate() + '일 (' + plan.weekdayName + ')';
     var dur = plan.menu ? plan.menu.duration : '';
     var goal = plan.menu ? plan.menu.goal : (plan.planKey === 'rest' ? '회복하는 날' : '');
-    $('sheet-sub').textContent = (plan.menu ? plan.menu.title : plan.planLabel) +
-      (goal ? ' · ' + goal : '') + (dur ? ' · ' + dur : '') +
+    var subParts = [];
+    [(plan.menu ? plan.menu.title : plan.planLabel), goal, dur].forEach(function (part) {
+      if (part && subParts.indexOf(part) === -1) subParts.push(part);
+    });
+    $('sheet-sub').textContent = subParts.join(' · ') +
       (isBeforeStart(k) ? ' · ' + DATA.start_date + ' 시작 전' : '');
 
     var buttons = document.querySelectorAll('.status-btn');
@@ -337,14 +347,25 @@
 
     // 운동 메뉴
     var menu = plan.menu || (DATA.menus ? DATA.menus.rest : null);
-    $('menu-title').textContent = menu ? menu.title + ' 코스' : '운동';
+    var items = (menu && menu.items) || [];
+    $('menu-title').textContent = menu ? (items.length ? menu.title + ' 코스' : menu.title) : '운동';
     var recSets = (rec && rec.sets) || {};
     var list = $('exercise-list');
     list.innerHTML = '';
     var totalSets = 0, doneSets = 0;
 
-    if (menu && menu.items) {
-      menu.items.forEach(function (item) {
+    if (!items.length) {
+      var restLi = document.createElement('li');
+      restLi.className = 'rest-card';
+      restLi.innerHTML =
+        '<div class="rest-emoji" aria-hidden="true">🌿</div>' +
+        '<p class="rest-title">' + escapeHtml(menu && menu.title ? menu.title : '휴식') + '</p>' +
+        '<p class="rest-text">' + escapeHtml((menu && menu.note) || '토·일은 운동 쉬는 날이에요. 폭 쉬고 회복하세요!') + '</p>';
+      list.appendChild(restLi);
+    }
+
+    if (items.length) {
+      items.forEach(function (item) {
         totalSets += item.sets;
         var arr = recSets[item.id] || [];
         var count = 0;
@@ -370,7 +391,7 @@
       });
     }
 
-    $('set-progress').textContent = doneSets + '/' + totalSets + ' 세트';
+    $('set-progress').textContent = items.length ? (doneSets + '/' + totalSets + ' 세트') : '';
 
     var note = $('record-note');
     if (st === 'done' && rec && rec.workout) {
