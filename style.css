@@ -194,7 +194,7 @@ h1 {
 }
 
 .cell .badge-done { color: #fff; background: var(--done); }
-.cell .badge-rest { color: #475569; background: #E2E8F0; }
+.cell .badge-rest { color: #334155; background: #CBD5E1; }
 .cell .badge-plan { color: var(--plan-ink); background: var(--plan-soft); }
 .cell .badge-today { color: #fff; background: var(--today); }
 
