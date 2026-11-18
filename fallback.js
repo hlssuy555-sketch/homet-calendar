@@ -1,7 +1,7 @@
 /* data.json과 같은 내용의 내장 사본 — fetch가 막힌 환경(file:// 등)에서 쓰입니다.
    tools/sync_data.py 로 data.json과 함께 갱신됩니다. 직접 수정하지 마세요. */
 window.__HOMET_FALLBACK__ = {
-  "start_date": "2026-11-18",
+  "start_date": "2026-11-23",
   "start_time": "07:00",
   "check_time": "08:00",
   "routine_name": "아침 7시 홈트 (추천 5일 루틴)",
@@ -280,7 +280,7 @@ window.__HOMET_FALLBACK__ = {
     }
   },
   "records": {},
-  "bodyweight_only_until": "2026-12-01",
+  "bodyweight_only_until": "2026-12-06",
   "bodyweight_menus": {
     "push": {
       "title": "가슴·어깨·삼두",

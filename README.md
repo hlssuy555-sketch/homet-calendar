@@ -21,10 +21,10 @@
 | `icon-*.png`, `icon.svg` | 아이콘 |
 | `tools/sync_data.py` | `workouts/log.json` → `data.json` 동기화 도구 |
 
-## 2주 맨몸 적응기 (2026-11-18 ~ 2026-12-01)
+## 2주 맨몸 적응기 (2026-11-23 ~ 2026-12-06)
 
-- `data.json`의 `bodyweight_only_until`(현재 `2026-12-01`)까지는 `bodyweight_menus`(맨몸 전용)가,
-  그 다음 날부터는 `menus`(바벨 27kg·7kg 빈 바·10kg 원판·풀업바·밴드·푸시업바) 가 자동으로 쓰입니다.
+- `data.json`의 `bodyweight_only_until`(현재 `2026-12-06`)까지는 `bodyweight_menus`(맨몸 전용)가,
+  그 다음 날(`2026-12-07`)부터는 `menus`(바벨 27kg·7kg 빈 바·10kg 원판·풀업바·밴드·푸시업바) 가 자동으로 쓰입니다.
 - 앱 상단과 날짜 상세 패널에 `1~2주 차 · 맨몸 적응` / `3주 차~ · 기구 루틴` 배지가 표시됩니다.
 - `bodyweight_only_until`만 바꾸면 기간이 늘거나 줄어듭니다(그 날짜까지 맨몸).
 
@@ -73,5 +73,5 @@ git add data.json fallback.js && git commit -m "루틴 동기화" && git push
   (GitHub Pages 는 정적 파일을 10분간 캐시하고, service worker 도 앱 셸을 캐시합니다.)
 - `preview/mobile.html` — 갤럭시 폭(360/390/412px)과 날짜 상세 패널을 한 화면에서 확인하는 점검용 페이지입니다.
   배포 URL 뒤에 `/preview/mobile.html` 을 붙이면 열립니다.
-- 날짜 딥링크: `https://hlssuy555-sketch.github.io/homet-calendar/#d=2026-11-19` 처럼
+- 날짜 딥링크: `https://hlssuy555-sketch.github.io/homet-calendar/#d=2026-11-23` 처럼
   `#d=YYYY-MM-DD` 를 붙이면 그 날짜 상세 패널이 바로 열립니다(아침 알림 링크에 사용).
